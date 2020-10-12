@@ -9,7 +9,7 @@
 	if(!empty($_POST))
 	{
 		if($_POST['idusuario'] == 1){
-			header("location: lista_usuarios.php");
+			header("location: lista_admins.php");
 			mysqli_close($conection);
 			exit;
 		}
@@ -19,7 +19,7 @@
 		$query_delete = mysqli_query($conection,"UPDATE usuarios_admin SET status = 0 WHERE idUsuario = $idusuario ");
 		mysqli_close($conection);
 		if($query_delete){
-			header("location: lista_usuarios.php");
+			header("location: lista_admins.php");
 		}else{
 			echo "Error al eliminar";
 		}
@@ -31,7 +31,7 @@
 
 	if(empty($_REQUEST['id']) || $_REQUEST['id'] == 1 )
 	{
-		header("location: lista_usuarios.php");
+		header("location: lista_admins.php");
 		mysqli_close($conection);
 	}else{
 
@@ -55,7 +55,7 @@
 				$rol     = $data['rol'];
 			}
 		}else{
-			header("location: lista_usuarios.php");
+			header("location: lista_admins.php");
 		}
 
 

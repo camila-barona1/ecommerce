@@ -11,9 +11,9 @@ require('top.php');
                         <div class="col-xs-12">
                             <div class="bradcaump__inner">
                                 <nav class="bradcaump-inner">
-                                  <a class="breadcrumb-item" href="index.html">Home</a>
+                                  <a class="breadcrumb-item" href="index.php">Home</a>
                                   <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
-                                  <span class="breadcrumb-item active">shopping cart</span>
+                                  <span class="breadcrumb-item active">Carrito compra</span>
                                 </nav>
                             </div>
                         </div>
@@ -60,10 +60,12 @@ require('top.php');
                                                 </ul>
                                             </td>
                                             <td class="product-price"><span class="amount"><?php echo $pprecio; ?></span></td>
-                                            <td class="product-quantity"><input type="number" id="<?php echo $key?>qty" value="<?php echo $qty?>" />
+                                            <td class="product-quantity"><input type="number" id="<?php echo $key?>qty" value="<?php if($qty==0){$qty=1;} echo $qty;  ?>" />
                                                 <br><a href="javascript:void(0)" onclick="manage_cart('<?php echo $key?>','update')">update</a>
                                             </td>
-                                            <td class="product-subtotal"><?php echo $qty*$pprecio; ?></td>
+                                            <td class="product-subtotal"><?php echo $qty*$pprecio; {
+                                                # code...
+                                            } ?></td>
                                             <td class="product-remove"><a href="javascript:void(0)" onclick="manage_cart('<?php echo $key?>','remove')"><i class="icon-trash icons"></i></a></td>
                                         <?php 
                                         
@@ -76,10 +78,10 @@ require('top.php');
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="buttons-cart--inner">
                                         <div class="buttons-cart">
-                                            <a href="<?php echo SITE_PATH ?>">Continue Shopping</a>
+                                            <a href="<?php echo SITE_PATH ?>">Continuar Comprando</a>
                                         </div>
                                         <div class="buttons-cart checkout--btn">
-                                            <a href="<?php echo SITE_PATH ?>checkout.php">checkout</a>
+                                            <a href="<?php echo SITE_PATH ?>checkout.php">Ir a pagar</a>
                                         </div>
                                     </div>
                                 </div>

@@ -484,7 +484,7 @@
 
     }
     if (is_error=='') {
-      jQuery.ajax({
+      jQuery.ajax({ 
         url:'registro_usuario.php',
         type:'post',
         data:'name='+name+'&email='+email+'&telefono='+telefono+'&password='+password,
@@ -500,37 +500,6 @@
     }
   }
 
- // function login_usuario() {
- //    jQuery('.field_error').html('');
- //    var login_name=jQuery("#login_name").val();
- //    var login_password=jQuery("#login_password").val();
- //    var is_error='';
- //    if (login_name=="") {
- //      jQuery('#login_email_error').html('Porfavor ingresa tu email');
- //      var is_error='yes';
-
- //    }if (login_password=="") {
- //      jQuery('#login_password_error').html('Porfavor ingresa tu contraseña');
- //      var is_error='yes';
-
- //    }
- //    if (is_error=='') {
- //      jQuery.ajax({
- //        url:'login_usuario.php',
- //        type:'post',
- //        data:'login_name='+login_name+'&login_password='+login_password,
- //        success:function(result) {
- //          if (result=='wrong') {
- //            jQuery('.login_msg p').html('Porfavor ingresa un correo y contraseña valida');
- //          }
- //          if (result=='valid') {
- //            window.location.href='index.php';
-
- //          }
- //        }
- //      });
- //    }
- //  }
 function user_login(){
   jQuery('.field_error').html('');
   var email=jQuery("#login_email").val();
@@ -550,7 +519,7 @@ function user_login(){
       data:'email='+email+'&password='+password,
       success:function(result){
         if(result=='wrong'){
-          jQuery('.login_msg p').html('Please enter valid login details');
+          jQuery('.login_msg p').html('Por favor ingresa credenciales validas');
         }
         if(result=='valid'){
           window.location.href=window.location.href;
@@ -575,8 +544,31 @@ function manage_cart(pid,type){
       if(type=='update' || type=='remove'){
         window.location.href=window.location.href;
       }
+      if (result=='not_avaliable') {
+            alert('Cantidad no disponible');
+      }else{
       jQuery('.htc__qua').html(result);
+    }
     } 
   }); 
 }
 
+function sort_product_drop(cat_id, site_path) {
+  var sort_product_id=jQuery('#sort_product_id').val();
+  window.location.href=site_path+"categorias.php?id="+cat_id+"&sort="+sort_product_id;
+}
+
+function wishlist_manage(pid,type) {
+  jQuery.ajax({
+    url:'wishlist_manage.php',
+    type:'post',
+    data:'pid='+pid+'&type='+type,
+    success:function(result){
+      if(result=='not_login'){
+        window.location.href='login.php';
+      }else{
+        jQuery('.htc__wishlist').html(result);
+      }
+    } 
+  });
+}

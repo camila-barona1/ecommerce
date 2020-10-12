@@ -1,5 +1,32 @@
 <?php 
-	
+	 function resetPassword($token)
+ {
+ 	 $host = 'localhost';
+	$user = 'root';
+	$password = '';
+	$db = 'pos_system';
+	$conection = @mysqli_connect($host,$user,$password,$db);
+
+	if(!$conection){
+		echo "Error en la conexión";
+	}
+ 	$sql2 = "SELECT * FROM  usuarios_admin WHERE cedula='$token'";
+ 	$result = mysqli_query($conection, $sql2);
+ 	$usert = mysqli_fetch_assoc($result);
+ 	$_SESSION['email'] = $usert['correo'];
+  	?>
+    <script type="text/javascript">
+       window.location.href='reset_password.php';
+     </script>
+     <?php
+ 	exit(0);
+ }
+
+if (isset($_GET['password-token'])) {
+    $Passtoken = $_GET['password-token'];
+    resetPassword($Passtoken);
+}
+
 $alert = '';
 session_start();
 if(!empty($_SESSION['active']))
@@ -45,6 +72,8 @@ if(!empty($_SESSION['active']))
 
 	}
 }
+
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -88,7 +117,7 @@ if(!empty($_SESSION['active']))
 			</div>
 			<div class="login-menu">
 				<ul>
-					<li><a href="register.html">Register</a></li>
+					<li><a href="register.php">Registrarte</a></li>
 				</ul>
 			</div>
 		</div>
@@ -102,25 +131,25 @@ if(!empty($_SESSION['active']))
 				<div class="col-md-6 col-lg-5">
 					<div class="login-box bg-white box-shadow border-radius-10">
 						<div class="login-title">
-							<h2 class="text-center text-primary">Login</h2>
+							<h2 class="text-center text-primary">Inicio de Sesion</h2>
 						</div>
 						<form action="" method="post">
-							<div class="select-role">
+							<!-- <div class="select-role">
 								<div class="btn-group btn-group-toggle" data-toggle="buttons">
 									<label class="btn active">
 										<input type="radio" name="options" id="admin">
 										<div class="icon"><img src="vendors/images/briefcase.svg" class="svg" alt=""></div>
-										<span>I'm</span>
-										Admin
+										<span>Soy</span>
+										Administrador
 									</label>
 									<label class="btn">
 										<input type="radio" name="options" id="user">
 										<div class="icon"><img src="vendors/images/person.svg" class="svg" alt=""></div>
-										<span>I'm</span>
-										Employee
+										<span>Soy</span>
+										Empleado
 									</label>
 								</div>
-							</div>
+							</div> -->
 							<div class="input-group custom">
 								<input type="text" name="correo" class="form-control form-control-lg" placeholder="Correo">
 								<div class="input-group-append custom">
@@ -135,14 +164,9 @@ if(!empty($_SESSION['active']))
 							</div>
 							<div class="alert" style="color: red"><?php echo isset($alert) ? $alert : ''; ?></div>
 							<div class="row pb-30">
-								<div class="col-6">
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="customCheck1">
-										<label class="custom-control-label" for="customCheck1">Remember</label>
-									</div>
-								</div>
-								<div class="col-6">
-									<div class="forgot-password"><a href="forgot-password.html">Forgot Password</a></div>
+								
+								<div class="col-7">
+									<div class="forgot-password"><a href="forgot-password.php">¿Olvidaste tu contraseña?</a></div>
 								</div>
 							</div>
 							<div class="row">
@@ -152,11 +176,11 @@ if(!empty($_SESSION['active']))
 											use code for form submit
 											<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
 										-->
-										<input type="submit" value="Sign In" class="btn btn-primary btn-lg btn-block" >
+										<input type="submit" value="Ingresar" class="btn btn-primary btn-lg btn-block" >
 									</div>
 									<div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
 									<div class="input-group mb-0">
-										<a class="btn btn-outline-primary btn-lg btn-block" href="register.html">Register To Create Account</a>
+										<a class="btn btn-outline-primary btn-lg btn-block" href="register.php">Crear una cuenta</a>
 									</div>
 								</div>
 							</div>

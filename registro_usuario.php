@@ -3,11 +3,11 @@ require('conexion.php');
 require('functions.inc.php');
 
 // prx($_POST);
-
+ 
 $name=get_safe_value($conection,$_POST['name']);
 $email=get_safe_value($conection,$_POST['email']);
 $telefono=get_safe_value($conection,$_POST['telefono']);
-$password=get_safe_value($conection,$_POST['password']);
+$password= md5(get_safe_value($conection,$_POST['password']));
 
 $check_user=mysqli_num_rows(mysqli_query($conection, "select * from users where email='$email'"));
 if ($check_user>0) {

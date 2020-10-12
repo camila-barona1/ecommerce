@@ -181,7 +181,7 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>DataTable</h4>
+								<h4>Lista</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
@@ -271,7 +271,9 @@
 				<!-- Export Datatable End -->
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Admin Panel Cavis HomeStore 
+				<a style="text-decoration: none; color: black">| Version 1.0</a>
+				<!-- <a href="https://github.com/dropways" target="_blank">Version 1.0</a> -->
 			</div>
 		</div>
 	</div>

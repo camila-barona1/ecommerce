@@ -32,7 +32,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Lista Categorias</title>
+	<title>Lista contactos</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -171,7 +171,7 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>DataTable</h4>
+								<h4>Lista</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
@@ -201,9 +201,9 @@
 								<th scope="col">ID</th>
 								<th scope="col">NOMBRE</th>
 								<th scope="col">EMAIL</th>
-								<th scope="col">Telefono</th>
-								<th scope="col">QUERY</th>
-								<th scope="col">DATE</th>
+								<th scope="col">TELEFONO</th>
+								<th scope="col">MENSAJE</th>
+								<th scope="col">FECHA</th>
 								<th scope="col"></th>
 
 							</tr>
@@ -257,7 +257,9 @@
 				<!-- Export Datatable End -->
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Admin Panel Cavis HomeStore 
+				<a style="text-decoration: none; color: black">| Version 1.0</a>
+				<!-- <a href="https://github.com/dropways" target="_blank">Version 1.0</a> -->
 			</div>
 		</div>
 	</div>

@@ -32,7 +32,7 @@
 		}
 	}
 
-	$sql = "SELECT p.idProductos, p.nombre, p.descripcion, p.precio, p.existencia, p.imagen, p.status, c.categoria FROM productos p INNER JOIN categorias c ON p.categoria_id= c.idCategorias";
+	$sql = "SELECT p.idProductos, p.nombre, p.descripcion, p.precio, p.existencia, p.imagen, p.status, c.categoria FROM productos p INNER JOIN categorias c ON p.categoria_id= c.idCategorias order by p.idProductos desc";
 	$res= mysqli_query($conection,$sql);
 
  ?>
@@ -181,7 +181,7 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>DataTable</h4>
+								<h4>Lista</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
@@ -232,7 +232,14 @@
 								<td><?php echo $row['nombre']; ?></td>
 								<td><?php echo $row['descripcion']; ?></td>
 								<td><?php echo $row['precio']; ?></td>
-								<td><?php echo $row['existencia']; ?></td>
+								<td><?php echo $row['existencia']; ?>
+									<br>
+									<?php
+									$productoVendidoByProductId=productoVendidoByProductId($conection,$row['idProductos']);
+									$cantidad_pendiente=$row['existencia']-$productoVendidoByProductId;
+									 ?>
+									 Cantidad Pendiente: <?php echo $cantidad_pendiente; ?>
+								</td>
 								<td><img width="80px" src="../../media/productos/<?php echo $row['imagen'] ?>"/></td>
 
 								<td><!-- <div class="btn-group-toggle btn-group" data-toggle="buttons" >
@@ -276,7 +283,9 @@
 				<!-- Export Datatable End -->
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Admin Panel Cavis HomeStore 
+				<a style="text-decoration: none; color: black">| Version 1.0</a>
+				<!-- <a href="https://github.com/dropways" target="_blank">Version 1.0</a> -->
 			</div>
 		</div>
 	</div>

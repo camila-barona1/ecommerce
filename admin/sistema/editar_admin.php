@@ -35,7 +35,7 @@
 				if(empty($_POST['clave']))
 				{
 
-					$sql_update = mysqli_query($conection,"UPDATE usuarios
+					$sql_update = mysqli_query($conection,"UPDATE usuarios_admin
 															SET cedula=$cedula, nombres = '$nombre', apellidos = '$apellidos', correo='$correo', telefono = '$telefono', genero = '$genero',rol='$rol'
 															WHERE idUsuario= $idUsuario ");
 				}else{

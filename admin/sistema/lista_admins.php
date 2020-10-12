@@ -1,9 +1,9 @@
 <?php 
 	session_start();
-	if($_SESSION['rol'] != 1)
-	{
-		header("location: ./");
-	}
+	// if($_SESSION['rol'] != 1)
+	// {
+	// 	header("location: ./");
+	// }
 	
 	include "../conexion.php";	
 
@@ -153,11 +153,11 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>DataTable</h4>
+								<h4>Lista</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+									<li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Lista Usuarios</li>
 								</ol>
 							</nav>
@@ -213,36 +213,13 @@
 					<td><?php echo $data["telefono"]; ?></td>
 					<td><?php echo $data['rol'] ?></td>
 					<td>
-						<div class="modal fade" id="Medium-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 class="modal-title" id="myLargeModalLabel">Informacion</h4>
-											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-										</div>
-										<div class="modal-body">
-											<p><?php echo $data["cedula"]; ?></p>
-											<p><?php echo $data["nombres"]; ?></p>
-											<p><?php echo $data["apellidos"]; ?></p>
-											<p><?php echo $data["correo"]; ?></p>
-											<p><?php echo $data["telefono"]; ?></p>
-
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										</div>
-									</div>
-									
-
-								</div>
-							</div>
+					
 								<div class="dropdown">
 									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 										
-										<a class="dropdown-item"  data-toggle="modal" data-target="#Medium-modal" type="button"><i class="dw dw-eye"></i> View</a>
 										<a class="dropdown-item" href="editar_admin.php?id=<?php echo $data["idUsuario"]; ?>"><i class="dw dw-edit2"></i> Edit</a>
 										<a class="dropdown-item" href="eliminar_confirmar_admin.php?id=<?php echo $data["idUsuario"]; ?>"><i class="dw dw-delete-3"></i> Delete</a>
 									</div>
@@ -293,7 +270,9 @@
 				<!-- Export Datatable End -->
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Admin Panel Cavis HomeStore 
+				<a style="text-decoration: none; color: black">| Version 1.0</a>
+				<!-- <a href="https://github.com/dropways" target="_blank">Version 1.0</a> -->
 			</div>
 		</div>
 	</div>

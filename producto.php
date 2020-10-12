@@ -66,27 +66,52 @@ if ($producto_id>0) {
                                 <p class="pro__info"><?php echo $get_product['0']['descripcion'] ?></p>
                                 <div class="ht__pro__desc">
                                     <div class="sin__desc">
-                                        <p><span>Availability:</span> 
-                                            In Stock
+                                        <?php 
+                                        $productoVendidoByProductId=productoVendidoByProductId($conection,$get_product['0']['idProductos']); 
+
+                                        $cantidad_pendiente=$get_product['0']['existencia']-$productoVendidoByProductId;
+
+                                        $cart_show='yes';
+                                        if ($get_product['0']['existencia']>$productoVendidoByProductId) {
+                                            $stock = 'En existencia';
+                                        }else{
+                                            $stock = '<span style="color:red; font-size:12pt;">Agotado';
+                                            $cart_show='';
+                                        }
+                                        ?>
+                                        <p><span>Disponibilidad:</span> 
+                                            <?php echo $stock; ?>
                                         </p>
                                     </div>
                                     <div class="sin__desc">
+                                        <?php 
+                                    if ($cart_show!='') {
+                                       ?>
                                         <p><span>Cantidad:</span> 
                                             <select id="qty">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <?php 
+                                                for ($i=1; $i <=$cantidad_pendiente; $i++) { 
+                                                   echo '<option>'.$i.'</option>';
+                                                }
+                                                 ?>
+                                                
                                             </select></p>
+                                            <?php 
+                                     } ?>
                                     </div>
+
                                     <div class="sin__desc align--left">
                                         <p><span>Categories:</span></p>
                                         <ul class="pro__cat__list">
                                             <li><a><?php echo $get_product['0']['categoria'] ?></a></li>
                                         </ul>
                                     </div>
+                                    <?php 
+                                    if ($cart_show!='') {
+                                       ?>
                                     <a class="fr__btn" href="javascript:void(0)" onclick="manage_cart('<?php echo $get_product['0']['idProductos'] ?>','add')">Añadir</a>
+                                    <?php 
+                                     } ?>
                                     
                                     </div>
                                 </div>

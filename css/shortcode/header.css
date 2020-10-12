@@ -268,7 +268,7 @@ nav.off__canvars--menu ul li ul li a:hover {
     position: relative;
 }
 .header__account a::before {
-    background: #898989 none repeat scroll 0 0;
+    /*background: #898989 none repeat scroll 0 0;*/
     content: "";
     height: 15px;
     position: absolute;

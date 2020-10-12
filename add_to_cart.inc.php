@@ -2,6 +2,15 @@
 /**
  * 
  */
+$host = 'localhost';
+  $user = 'root';
+  $password = '';
+  $db = 'pos_system';
+  $conection = @mysqli_connect($host,$user,$password,$db);
+
+  if(!$conection){
+    echo "Error en la conexión";
+  } 
 
 
 class add_to_cart{

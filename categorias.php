@@ -1,9 +1,39 @@
 <?php 
 require('top.php');
 // include_once('functions.inc.php');
+
+$sort_order='';
+$price_high_selected='';
+$price_low_selected='';
+$new_selected='';
+$old_selected='';
+
+
 $categoria_id=mysqli_real_escape_string($conection,$_GET['id']);
+if (isset($_GET['sort'])) {
+    $sort=mysqli_real_escape_string($conection,$_GET['sort']);
+    if ($sort=='price_high') {
+        $sort_order=" order by productos.precio desc ";
+        $price_high_selected='selected';
+    }
+    if ($sort=='price_low') {
+        $sort_order=" order by productos.precio asc ";
+        $price_low_selected='selected';
+
+    }
+    if ($sort=='new') {
+        $sort_order=" order by productos.idProductos desc ";
+        $new_selected='selected';
+
+    }
+    if ($sort=='old') {
+        $sort_order=" order by productos.idProductos asc ";
+        $old_selected='selected';
+
+    }
+}
 if ($categoria_id>0) {
-    $get_product=get_product($conection,'',$categoria_id);
+    $get_product=get_product($conection,'',$categoria_id,'','',$sort_order);
 }else{
     ?>
     <script type="text/javascript">
@@ -11,79 +41,12 @@ if ($categoria_id>0) {
     </script>
     <?php
 }
-
+// prx($get_product);
 
  ?>
 <div class="body__overlay"></div>
         <!-- Start Offset Wrapper -->
-        <div class="offset__wrapper">
-            <!-- Start Search Popap -->
-            <div class="search__area">
-                <div class="container" >
-                    <div class="row" >
-                        <div class="col-md-12" >
-                            <div class="search__inner">
-                                <form action="#" method="get">
-                                    <input placeholder="Search here... " type="text">
-                                    <button type="submit"></button>
-                                </form>
-                                <div class="search__close__btn">
-                                    <span class="search__close__btn_icon"><i class="zmdi zmdi-close"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Search Popap -->
             <!-- Start Cart Panel -->
-            <div class="shopping__cart">
-                <div class="shopping__cart__inner">
-                    <div class="offsetmenu__close__btn">
-                        <a href="#"><i class="zmdi zmdi-close"></i></a>
-                    </div>
-                    <div class="shp__cart__wrap">
-                        <div class="shp__single__product">
-                            <div class="shp__pro__thumb">
-                                <a href="#">
-                                    <img src="images/product-2/sm-smg/1.jpg" alt="product images">
-                                </a>
-                            </div>
-                            <div class="shp__pro__details">
-                                <h2><a href="product-details.html">BO&Play Wireless Speaker</a></h2>
-                                <span class="quantity">QTY: 1</span>
-                                <span class="shp__price">$105.00</span>
-                            </div>
-                            <div class="remove__btn">
-                                <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                            </div>
-                        </div>
-                        <div class="shp__single__product">
-                            <div class="shp__pro__thumb">
-                                <a href="#">
-                                    <img src="images/product-2/sm-smg/2.jpg" alt="product images">
-                                </a>
-                            </div>
-                            <div class="shp__pro__details">
-                                <h2><a href="product-details.html">Brone Candle</a></h2>
-                                <span class="quantity">QTY: 1</span>
-                                <span class="shp__price">$25.00</span>
-                            </div>
-                            <div class="remove__btn">
-                                <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="shoping__total">
-                        <li class="subtotal">Subtotal:</li>
-                        <li class="total__price">$130.00</li>
-                    </ul>
-                    <ul class="shopping__btn">
-                        <li><a href="cart.html">View Cart</a></li>
-                        <li class="shp__checkout"><a href="checkout.html">Checkout</a></li>
-                    </ul>
-                </div>
-            </div>
             <!-- End Cart Panel -->
         </div>
         <!-- End Offset Wrapper -->
@@ -118,11 +81,12 @@ if ($categoria_id>0) {
                         <div class="htc__product__rightidebar">
                             <div class="htc__grid__top">
                                 <div class="htc__select__option">
-                                    <select class="ht__select">
-                                        <option>Default softing</option>
-                                        <option>Sort by popularity</option>
-                                        <option>Sort by average rating</option>
-                                        <option>Sort by newness</option>
+                                    <select class="ht__select" onchange="sort_product_drop('<?php echo $categoria_id ?>','<?php echo SITE_PATH ?>')" id="sort_product_id">
+                                        <option>Organizar</option>
+                                        <option value="price_low" <?php echo $price_low_selected; ?> >Menor precio a Mayor</option>
+                                        <option value="price_high" <?php echo $price_high_selected; ?> >Mayor precio a menor</option>
+                                        <option value="new" <?php echo $new_selected; ?> >Nuevos</option>
+                                        <option value="old" <?php echo $old_selected; ?> >Viejos</option>
                                     </select>
                                 </div>
                                 
@@ -150,17 +114,18 @@ if ($categoria_id>0) {
                                                          <img src= "<?php echo "media/productos/".$list['imagen']; ?>"  alt="product images">
                                                     </a>
                                                 </div>
-                                                <div class="fr__hover__info">
-                                                    <ul class="product__action">
-                                                        <li><a href="wishlist.html"><i class="icon-heart icons"></i></a></li>
+                                               <div class="fr__hover__info">
+                                        <ul class="product__action">
+                                            <li><a href="javascript:void(0)" onclick="wishlist_manage('<?php echo $list['idProductos']?>','add')"><i class="icon-heart icons"></i></a></li>
 
-                                                        <li><a href="cart.html"><i class="icon-handbag icons"></i></a></li>
+                                            <li><a href="javascript:void(0)" onclick="manage_cart('<?php echo $list['idProductos']?>','add')"><i class="icon-handbag icons"></i></a></li>
 
-                                                        <li><a href="#"><i class="icon-shuffle icons"></i></a></li>
-                                                    </ul>
-                                                </div>
+                                            
+                                        </ul>
+                                    </div>
                                                 <div class="fr__product__inner">
-                                                    <h4><a href="product-details.html"><?php echo $list['nombre']; ?></a></h4>
+                                                    <h4><a href="producto.php?id=<?php echo $list['idProductos']; ?>"><?php echo $list['nombre']; ?></a></h4>
+                                                    <h3>Stock: <?php echo $list['existencia']; ?></h3>
                                                     <ul class="fr__pro__prize">
                                                         <!-- <li class="old__prize">$<?php //echo $list['precio']; ?></li> -->
                                                         <li>$<?php echo $list['precio']; ?></li>
@@ -192,16 +157,10 @@ if ($categoria_id>0) {
                                                             <li class="old__prize">$<?php echo $list['precio']; ?></li>
                                                             <li>$<?php echo $list['precio']; ?></li>
                                                         </ul>
-                                                        <ul class="rating">
-                                                            <li><i class="icon-star icons"></i></li>
-                                                            <li><i class="icon-star icons"></i></li>
-                                                            <li><i class="icon-star icons"></i></li>
-                                                            <li class="old"><i class="icon-star icons"></i></li>
-                                                            <li class="old"><i class="icon-star icons"></i></li>
-                                                        </ul>
+                                                       
                                                         <p><?php echo $list['descripcion']; ?></p>
                                                         <div class="fr__list__btn">
-                                                            <a class="fr__btn" href="cart.html">Add To Cart</a>
+                                                            <a class="fr__btn" href="javascript:void(0)" onclick="manage_cart('<?php echo $get_product['0']['idProductos'] ?>','add')">Add To Cart</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -219,81 +178,38 @@ if ($categoria_id>0) {
                 <?php }else{
                     echo "Data no found";
                 } ?>
+                
                     <div class="col-lg-3 col-lg-pull-9 col-md-3 col-md-pull-9 col-sm-12 col-xs-12 smt-40 xmt-40">
                         <div class="htc__product__leftsidebar">
                             <!-- Start Best Sell Area -->
                             <div class="htc__recent__product">
-                                <h2 class="title__line--4">best seller</h2>
+
+                                <h2 class="title__line--4">Ultimos Productos</h2>
                                 <div class="htc__recent__product__inner">
+                                    <?php  
+                            $get_product_ultimo=get_product($conection,3);
+                            foreach ($get_product_ultimo as $list_ultimo) {
+
+                            ?>
                                     <!-- Start Single Product -->
                                     <div class="htc__best__product">
                                         <div class="htc__best__pro__thumb">
-                                            <a href="product-details.html">
-                                                <img src="images/product-2/sm-smg/1.jpg" alt="small product">
+                                            <a href="producto.php?id=<?php echo $list_ultimo['idProductos']; ?>">
+                                                <img src= "<?php echo "media/productos/".$list_ultimo['imagen']; ?>"  alt="product images">
                                             </a>
                                         </div>
                                         <div class="htc__best__product__details">
-                                            <h2><a href="product-details.html">Product Title Here</a></h2>
-                                            <ul class="rating">
-                                                <li><i class="icon-star icons"></i></li>
-                                                <li><i class="icon-star icons"></i></li>
-                                                <li><i class="icon-star icons"></i></li>
-                                                <li class="old"><i class="icon-star icons"></i></li>
-                                                <li class="old"><i class="icon-star icons"></i></li>
-                                            </ul>
+                                            <h2><a href="producto.php?id=<?php echo $list_ultimo['idProductos']; ?>"><?php echo $list_ultimo['nombre']; ?></a></h2>
+                                         
+                                            <h3>Stock: <?php echo $list_ultimo['existencia']; ?></h3>
                                             <ul  class="pro__prize">
-                                                <li class="old__prize">$82.5</li>
-                                                <li>$75.2</li>
+                                                <!-- <li class="old__prize"></li> -->
+                                                <li>$<?php echo $list_ultimo['precio']; ?></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <!-- End Single Product -->
-                                    <!-- Start Single Product -->
-                                    <div class="htc__best__product">
-                                        <div class="htc__best__pro__thumb">
-                                            <a href="product-details.html">
-                                                <img src="images/product-2/sm-smg/2.jpg" alt="small product">
-                                            </a>
-                                        </div>
-                                        <div class="htc__best__product__details">
-                                            <h2><a href="product-details.html">Product Title Here</a></h2>
-                                            <ul class="rating">
-                                                <li><i class="icon-star icons"></i></li>
-                                                <li><i class="icon-star icons"></i></li>
-                                                <li><i class="icon-star icons"></i></li>
-                                                <li class="old"><i class="icon-star icons"></i></li>
-                                                <li class="old"><i class="icon-star icons"></i></li>
-                                            </ul>
-                                            <ul  class="pro__prize">
-                                                <li class="old__prize">$82.5</li>
-                                                <li>$75.2</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Product -->
-                                    <!-- Start Single Product -->
-                                    <div class="htc__best__product">
-                                        <div class="htc__best__pro__thumb">
-                                            <a href="product-details.html">
-                                                <img src="images/product-2/sm-smg/1.jpg" alt="small product">
-                                            </a>
-                                        </div>
-                                        <div class="htc__best__product__details">
-                                            <h2><a href="product-details.html">Product Title Here</a></h2>
-                                            <ul class="rating">
-                                                <li><i class="icon-star icons"></i></li>
-                                                <li><i class="icon-star icons"></i></li>
-                                                <li><i class="icon-star icons"></i></li>
-                                                <li class="old"><i class="icon-star icons"></i></li>
-                                                <li class="old"><i class="icon-star icons"></i></li>
-                                            </ul>
-                                            <ul  class="pro__prize">
-                                                <li class="old__prize">$82.5</li>
-                                                <li>$75.2</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Product -->
+                                    <?php } ?>
                                 </div>
                             </div>
                             <!-- End Best Sell Area -->

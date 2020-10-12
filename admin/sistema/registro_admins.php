@@ -34,7 +34,7 @@
 				$query_insert = mysqli_query($conection,"INSERT INTO usuarios_admin(cedula, nombres,apellidos,clave,rol,correo,telefono,genero)
 																	VALUES('$cedula','$nombre','$apellidos','$clave','$rol','$correo','$telefono','$genero')");
 				if($query_insert){
-					$alert='<p class="msg_save">Usuario creado correctamente.</p>';
+					$alert='<p style="color:green;" class="msg_save">Usuario creado correctamente.</p>';
 				}else{
 					$alert='<p class="msg_error">Error al crear el usuario.</p>';
 				}
@@ -188,12 +188,12 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Form</h4>
+								<h4>Formulario</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Registro Usuarios</li>
+									<li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Registro Funcionarios</li>
 								</ol>
 							</nav>
 						</div>
@@ -203,7 +203,7 @@
 
 <div class="login-box bg-white box-shadow border-radius-10">
 	<div align="center">
-							<h3>Registro Usuarios</h3>
+							<h3>Registro Funcionarios</h3>
 						</div>
 	<form action="" method="post">
 		
@@ -273,7 +273,7 @@
 				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 						<label>Clave</label>
-						<input type="text" name="clave" class="form-control">
+						<input type="password" name="clave" class="form-control">
 					</div>
 				</div>
 
@@ -321,8 +321,10 @@
 
 		
 		<div class="footer-wrap pd-20 mb-20 card-box">
-			DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
-		</div>
+				Admin Panel Cavis HomeStore 
+				<a style="text-decoration: none; color: black">| Version 1.0</a>
+				<!-- <a href="https://github.com/dropways" target="_blank">Version 1.0</a> -->
+			</div>
 	</div> 
 </div>
 <!-- js -->

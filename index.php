@@ -1,60 +1,15 @@
 <?php 
 require('top.php');
 // require('functions.inc.php');
-
+if (isset($_GET['password-token'])) {
+    $Passtoken = $_GET['password-token'];
+    resetPassword($Passtoken);
+}
+ 
  ?>
 <div class="body__overlay"></div>
         <!-- Start Offset Wrapper -->
         <div class="offset__wrapper">
-            <!-- Start Cart Panel -->
-            <!-- <div class="shopping__cart">
-                <div class="shopping__cart__inner">
-                    <div class="offsetmenu__close__btn">
-                        <a href="#"><i class="zmdi zmdi-close"></i></a>
-                    </div>
-                    <div class="shp__cart__wrap">
-                        <div class="shp__single__product">
-                            <div class="shp__pro__thumb">
-                                <a href="#">
-                                    <img src="images/product-2/sm-smg/1.jpg" alt="product images">
-                                </a>
-                            </div>
-                            <div class="shp__pro__details">
-                                <h2><a href="product-details.html">BO&Play Wireless Speaker</a></h2>
-                                <span class="quantity">QTY: 1</span>
-                                <span class="shp__price">$105.00</span>
-                            </div>
-                            <div class="remove__btn">
-                                <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                            </div>
-                        </div>
-                        <div class="shp__single__product">
-                            <div class="shp__pro__thumb">
-                                <a href="#">
-                                    <img src="images/product-2/sm-smg/2.jpg" alt="product images">
-                                </a>
-                            </div>
-                            <div class="shp__pro__details">
-                                <h2><a href="product-details.html">Brone Candle</a></h2>
-                                <span class="quantity">QTY: 1</span>
-                                <span class="shp__price">$25.00</span>
-                            </div>
-                            <div class="remove__btn">
-                                <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="shoping__total">
-                        <li class="subtotal">Subtotal:</li>
-                        <li class="total__price">$130.00</li>
-                    </ul>
-                    <ul class="shopping__btn">
-                        <li><a href="cart.html">View Cart</a></li>
-                        <li class="shp__checkout"><a href="checkout.html">Checkout</a></li>
-                    </ul>
-                </div>
-            </div> -->
-            <!-- End Cart Panel -->
         </div>
         <!-- End Offset Wrapper -->
         <!-- Start Slider Area -->
@@ -67,17 +22,17 @@ require('top.php');
                             <div class="col-md-7 col-sm-7 col-xs-12 col-lg-6">
                                 <div class="slide">
                                     <div class="slider__inner">
-                                        <h2>collection 2018</h2>
-                                        <h1>NICE CHAIR</h1>
+                                        <h2>collection 2020</h2>
+                                        <h1>lindo</h1>
                                         <div class="cr__btn">
-                                            <a href="cart.html">Shop Now</a>
+                                            <a href="cart.php">Shop Now</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-5 col-xs-12 col-md-5">
                                 <div class="slide__thumb">
-                                    <img src="images/slider/fornt-img/imgbin.jpg" alt="slider images">
+                                    <img src="images/slider/fornt-img/pexels-designecologist-1005058.jpg" alt="slider images">
                                 </div>
                             </div>
                         </div>
@@ -92,9 +47,9 @@ require('top.php');
                                 <div class="slide">
                                     <div class="slider__inner">
                                         <h2>collection 2020</h2>
-                                        <h1>NICE CHAIR</h1>
+                                        <h1>agradable</h1>
                                         <div class="cr__btn">
-                                            <a href="cart.html">Shop Now</a>
+                                            <a href="cart.php">Shop Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -115,10 +70,10 @@ require('top.php');
                             <div class="col-md-7 col-sm-7 col-xs-12 col-lg-6">
                                 <div class="slide">
                                     <div class="slider__inner">
-                                        <h2>collection 2018</h2>
-                                        <h1>NICE CHAIR</h1>
+                                        <h2>collection 2020</h2>
+                                        <h1>armonico</h1>
                                         <div class="cr__btn">
-                                            <a href="cart.html">Shop Now</a>
+                                            <a href="cart.php">Shop Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -139,10 +94,10 @@ require('top.php');
                             <div class="col-md-7 col-sm-7 col-xs-12 col-lg-6">
                                 <div class="slide">
                                     <div class="slider__inner">
-                                        <h2>collection 2018</h2>
-                                        <h1>NICE CHAIR</h1>
+                                        <h2>collection 2020</h2>
+                                        <h1>unico</h1>
                                         <div class="cr__btn">
-                                            <a href="cart.html">Shop Now</a>
+                                            <a href="cart.php">Shop Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -165,8 +120,8 @@ require('top.php');
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="section__title--2 text-center">
-                            <h2 class="title__line">New Arrivals</h2>
-                            <p>But I must explain to you how all this mistaken idea</p>
+                            <h2 class="title__line">Nuevos Productos</h2>
+                            <p>Mira nuestra colección de verano</p>
                         </div>
                     </div>
                 </div>
@@ -174,7 +129,7 @@ require('top.php');
                     <div class="row">
                         <div class="product__list clearfix mt--30">
                             <?php  
-                            $get_product=get_product($conection,5);
+                            $get_product=get_product($conection,8);
                             foreach ($get_product as $list) {
 
                             ?>
@@ -188,17 +143,18 @@ require('top.php');
                                     </div>
                                     <div class="fr__hover__info">
                                         <ul class="product__action">
-                                            <li><a href="wishlist.html"><i class="icon-heart icons"></i></a></li>
+                                            <li><a href="javascript:void(0)" onclick="wishlist_manage('<?php echo $list['idProductos']?>','add')"><i class="icon-heart icons"></i></a></li>
 
-                                            <li><a ><i class="icon-handbag icons"></i></a></li>
+                                            <li><a href="javascript:void(0)" onclick="manage_cart('<?php echo $list['idProductos']?>','add')"><i class="icon-handbag icons"></i></a></li>
 
-                                            <li><a href="#"><i class="icon-shuffle icons"></i></a></li>
+                                            
                                         </ul>
                                     </div>
                                     <div class="fr__product__inner">
-                                        <h4><a href="product-details.html"><?php echo $list['nombre']; ?></a></h4>
+                                        <h4><a href="producto.php?id=<?php echo $list['idProductos']; ?>"><?php echo $list['nombre']; ?></a></h4>
+                                        <h3>Stock: <?php echo $list['existencia']; ?></h3>
                                         <ul class="fr__pro__prize">
-                                            <!-- <li class="old__prize">$<?php echo $list['precio']; ?></li> -->
+                                            <!-- <li class="old__prize">$<?php //echo $list['precio']; ?></li> -->
                                             <li>$<?php echo $list['precio']; ?></li>
                                         </ul>
                                     </div>
@@ -213,7 +169,7 @@ require('top.php');
         </section>
         <!-- End Category Area -->
         <!-- Start Product Area -->
-        <section class="ftr__product__area ptb--100">
+        <!-- <section class="ftr__product__area ptb--100">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -225,7 +181,6 @@ require('top.php');
                 </div>
                 <div class="row">
                     <div class="product__wrap clearfix">
-                        <!-- Start Single Category -->
                         <div class="col-md-4 col-lg-3 col-sm-4 col-xs-12">
                             <div class="category">
                                 <div class="ht__cat__thumb">
@@ -251,92 +206,10 @@ require('top.php');
                                 </div>
                             </div>
                         </div>
-                        <!-- End Single Category -->
-                        <!-- Start Single Category -->
-                        <div class="col-md-4 col-lg-3 col-sm-4 col-xs-12">
-                            <div class="category">
-                                <div class="ht__cat__thumb">
-                                    <a href="product-details.html">
-                                        <img src="images/product/10.jpg" alt="product images">
-                                    </a>
-                                </div>
-                                <div class="fr__hover__info">
-                                    <ul class="product__action">
-                                        <li><a href="wishlist.html"><i class="icon-heart icons"></i></a></li>
-
-                                        <li><a href="cart.html"><i class="icon-handbag icons"></i></a></li>
-
-                                        <li><a href="#"><i class="icon-shuffle icons"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="fr__product__inner">
-                                    <h4><a href="product-details.html">voluptatem accusantium</a></h4>
-                                    <ul class="fr__pro__prize">
-                                        <li class="old__prize">$30.3</li>
-                                        <li>$25.9</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Category -->
-                        <!-- Start Single Category -->
-                        <div class="col-md-4 col-lg-3 col-sm-4 col-xs-12">
-                            <div class="category">
-                                <div class="ht__cat__thumb">
-                                    <a href="product-details.html">
-                                        <img src="images/product/11.jpg" alt="product images">
-                                    </a>
-                                </div>
-                                <div class="fr__hover__info">
-                                    <ul class="product__action">
-                                        <li><a href="wishlist.html"><i class="icon-heart icons"></i></a></li>
-
-                                        <li><a href="cart.html"><i class="icon-handbag icons"></i></a></li>
-
-                                        <li><a href="#"><i class="icon-shuffle icons"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="fr__product__inner">
-                                    <h4><a href="product-details.html">Product Dummy Name</a></h4>
-                                    <ul class="fr__pro__prize">
-                                        <li class="old__prize">$30.3</li>
-                                        <li>$25.9</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Category -->
-                        <!-- Start Single Category -->
-                        <div class="col-md-4 col-lg-3 col-sm-4 col-xs-12">
-                            <div class="category">
-                                <div class="ht__cat__thumb">
-                                    <a href="product-details.html">
-                                        <img src="images/product/12.jpg" alt="product images">
-                                    </a>
-                                </div>
-                                <div class="fr__hover__info">
-                                    <ul class="product__action">
-                                        <li><a href="wishlist.html"><i class="icon-heart icons"></i></a></li>
-
-                                        <li><a href="cart.html"><i class="icon-handbag icons"></i></a></li>
-
-                                        <li><a href="#"><i class="icon-shuffle icons"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="fr__product__inner">
-                                    <h4><a href="product-details.html">Product Title Here </a></h4>
-                                    <ul class="fr__pro__prize">
-                                        <li class="old__prize">$30.3</li>
-                                        <li>$25.9</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Category -->
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- End Product Area -->
 
  <?php 

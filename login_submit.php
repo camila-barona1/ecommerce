@@ -11,9 +11,16 @@ if($check_user>0){
 	$row=mysqli_fetch_assoc($res);
 	$_SESSION['USER_LOGIN']='yes';
 	$_SESSION['USER_ID']=$row['idUsers'];
-	$_SESSION['USER_NAME']=$row['nombre'];
+	$_SESSION['USER_NAME']=$row['nombre']; 
+	$_SESSION['USER_EMAIL']=$row['email'];
+
+	
+	if (isset($_SESSION['WISHLIST_ID']) && $_SESSION['WISHLIST_ID']!='') {
+		wishlist_add($conection,$_SESSION['USER_ID'],$_SESSION['WISHLIST_ID']);
+		unset($_SESSION['WISHLIST_ID']);
+	}
 	echo "valid";
-}else{
+}else{ 
 	echo "wrong";
 }
 ?>
